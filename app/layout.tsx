@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Gochi_Hand, Inder } from "next/font/google";
 import "./globals.css";
+import { ClientLayout } from "./ClientLayout";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inder = Inder({
   subsets: ["latin"],
+  variable: "--font-inder",
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const gochi = Gochi_Hand({
   subsets: ["latin"],
+  variable: "--font-gochi",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -22,12 +25,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
-    <html lang="en">
+    <html lang="en" className={`${inder.variable} ${gochi.variable}`}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`font-sans antialiased`}
       >
-        {children}
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   );
